@@ -73,6 +73,8 @@ if IS == 'up':
     product_state = ['up'] * M.lat.N_sites
 elif IS == 'up-down':
     product_state = ['up','down'] * int(M.lat.N_sites/2)
+elif IS == 'empty-full':
+    product_state = ['empty','full'] * int(M.lat.N_sites/2)
 
     
 psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
