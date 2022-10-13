@@ -98,7 +98,7 @@ if BC_MPS == 'infinite':
     S_err = TOL
 else:
     max_sweep = 500
-    disable_after = 30
+    disable_after = 20
     S_err = TOL
 
 dmrg_params = {
