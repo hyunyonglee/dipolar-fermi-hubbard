@@ -158,7 +158,7 @@ if BC_MPS == 'finite' and BC == 'periodic':
     for i in range(0,int(L/2-1)): 
         I = 2*i
         hus.append( np.abs( psi.expectation_value_term([('Cdu',I+2),('Cu',I)]) ) )
-    hs.append( np.abs( psi.expectation_value_term([('Cdu',L-1),('Cu',L-2 )]) ) )
+    hus.append( np.abs( psi.expectation_value_term([('Cdu',L-1),('Cu',L-2 )]) ) )
     for i in range(0,int(L/2-1)):
         I = L-1 - 2*i
         hus.append( np.abs( psi.expectation_value_term([('Cdu',I-2),('Cu',I)]) ) )
