@@ -154,11 +154,32 @@ else:
 # measuring exciton condensation
 hus = []
 hds = []
-for i in range(0,R): 
-    hus.append( np.abs( psi.expectation_value_term([('Cdu',i+1),('Cu',i)]) ) )
-    hds.append( np.abs( psi.expectation_value_term([('Cdd',i+1),('Cd',i)]) ) )
-#
+if BC_MPS == 'finite' and BC == 'periodic':
+    for i in range(0,int(L/2-1)): 
+        I = 2*i
+        hus.append( np.abs( psi.expectation_value_term([('Cdu',I+2),('Cu',I)]) ) )
+    hs.append( np.abs( psi.expectation_value_term([('Cdu',L-1),('Cu',L-2 )]) ) )
+    for i in range(0,int(L/2-1)):
+        I = L-1 - 2*i
+        hus.append( np.abs( psi.expectation_value_term([('Cdu',I-2),('Cu',I)]) ) )
+    hus.append( np.abs( psi.expectation_value_term([('Cdu',0),('Cu',1)]) ) )
 
+    for i in range(0,int(L/2-1)): 
+        I = 2*i
+        hds.append( np.abs( psi.expectation_value_term([('Cdd',I+2),('Cd',I)]) ) )
+    hds.append( np.abs( psi.expectation_value_term([('Cdd',L-1),('Cd',L-2 )]) ) )
+    for i in range(0,int(L/2-1)):
+        I = L-1 - 2*i
+        hds.append( np.abs( psi.expectation_value_term([('Cdd',I-2),('Cd',I)]) ) )
+    hds.append( np.abs( psi.expectation_value_term([('Cdd',0),('Cd',1)]) ) )
+
+else:
+    for i in range(0,R): 
+        hus.append( np.abs( psi.expectation_value_term([('Cdu',i+1),('Cu',i)]) ) )
+        hds.append( np.abs( psi.expectation_value_term([('Cdd',i+1),('Cd',i)]) ) )
+
+
+'''
 # measuring correlation functions
 cor_cucu = []
 cor_cdcd = []
@@ -185,6 +206,31 @@ for i in range(R_CORR):
     cor_cucu.append( np.abs( psi.expectation_value_term([('Cdu',I0),('Cu',I0+1+i)])))
     cor_cdcd.append( np.abs( psi.expectation_value_term([('Cdd',I0),('Cd',I0+1+i)])))
 
+file = open( PATH + "observables/corr_cucu.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cucu)) + " " + "\n")
+file.close()
+
+file = open( PATH + "observables/corr_cdcd.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cdcd)) + " " + "\n")
+file.close()
+
+file = open( PATH + "observables/corr_du.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du)) + " " + "\n")
+file.close()
+
+file = open( PATH + "observables/corr_dd.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd)) + " " + "\n")
+file.close()
+
+file = open( PATH + "observables/corr_du_conn.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du_conn)) + " " + "\n")
+file.close()
+
+file = open( PATH + "observables/corr_dd_conn.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd_conn)) + " " + "\n")
+file.close()
+
+'''
 
 
 file = open( PATH + "observables/energy.txt","a")
@@ -219,29 +265,6 @@ file = open( PATH + "observables/entanglement_entropy.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, EE)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_cucu.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cucu)) + " " + "\n")
-file.close()
-
-file = open( PATH + "observables/corr_cdcd.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cdcd)) + " " + "\n")
-file.close()
-
-file = open( PATH + "observables/corr_du.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du)) + " " + "\n")
-file.close()
-
-file = open( PATH + "observables/corr_dd.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd)) + " " + "\n")
-file.close()
-
-file = open( PATH + "observables/corr_du_conn.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du_conn)) + " " + "\n")
-file.close()
-
-file = open( PATH + "observables/corr_dd_conn.txt","a")
-file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd_conn)) + " " + "\n")
-file.close()
 
 file_ES = open( PATH + "entanglement/es_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
 for i in range(0,R):
