@@ -44,13 +44,12 @@ CHI = int(sys.argv[6])
 RM = sys.argv[7]
 QN = sys.argv[8]
 QS = sys.argv[9]
-PATH = sys.argv[10]
-BC_MPS = sys.argv[11]
-BC = sys.argv[12]
-IS = sys.argv[13]
-TOL = float(sys.argv[14])
-h = float(sys.argv[15])
-EXC = sys.argv[16]
+BC_MPS = sys.argv[10]
+BC = sys.argv[11]
+IS = sys.argv[12]
+TOL = float(sys.argv[13])
+h = float(sys.argv[14])
+EXC = sys.argv[15]
 
 model_params = {
     "L": L,
@@ -124,10 +123,10 @@ dmrg_params = {
     'combine' : True
 }
 
-ensure_dir(PATH + "observables/")
-ensure_dir(PATH + "entanglement/")
-ensure_dir(PATH + "logs/")
-ensure_dir(PATH + "mps/")
+ensure_dir("observables/")
+ensure_dir("entanglement/")
+ensure_dir("logs/")
+ensure_dir("mps/")
 
 # ground state
 eng = dmrg.TwoSiteDMRGEngine(psi, M, dmrg_params)
@@ -206,79 +205,79 @@ for i in range(R_CORR):
     cor_cucu.append( np.abs( psi.expectation_value_term([('Cdu',I0),('Cu',I0+1+i)])))
     cor_cdcd.append( np.abs( psi.expectation_value_term([('Cdd',I0),('Cd',I0+1+i)])))
 
-file = open( PATH + "observables/corr_cucu.txt","a")
+file = open( "observables/corr_cucu.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cucu)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_cdcd.txt","a")
+file = open( "observables/corr_cdcd.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_cdcd)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_du.txt","a")
+file = open( "observables/corr_du.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_dd.txt","a")
+file = open( "observables/corr_dd.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_du_conn.txt","a")
+file = open( "observables/corr_du_conn.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_du_conn)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/corr_dd_conn.txt","a")
+file = open( "observables/corr_dd_conn.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, cor_dd_conn)) + " " + "\n")
 file.close()
 
 '''
 
 
-file = open( PATH + "observables/energy.txt","a")
+file = open( "observables/energy.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + repr(E) + " " + repr( np.mean(Nu) ) + " " + repr( np.mean(Nd) ) + " " + repr( np.mean(Cu) ) + " " + repr( np.mean(Cd) ) + " " + repr( np.mean(hus) ) + " " + repr( np.mean(hds) ) + " " + repr(xi) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Nu.txt","a")
+file = open( "observables/Nu.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, Nu)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Nd.txt","a")
+file = open( "observables/Nd.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, Nd)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Cu.txt","a")
+file = open( "observables/Cu.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, Cu)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Cd.txt","a")
+file = open( "observables/Cd.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, Cd)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Du.txt","a")
+file = open( "observables/Du.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, hus)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/Dd.txt","a")
+file = open( "observables/Dd.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, hds)) + " " + "\n")
 file.close()
 
-file = open( PATH + "observables/entanglement_entropy.txt","a")
+file = open( "observables/entanglement_entropy.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, EE)) + " " + "\n")
 file.close()
 
 
-file_ES = open( PATH + "entanglement/es_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
+file_ES = open( "entanglement/es_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
 for i in range(0,R):
     file_ES.write("  ".join(map(str, ES[i])) + " " + "\n")
-file_EE = open( PATH + "entanglement/ee_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
+file_EE = open( "entanglement/ee_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
 file_EE.write("  ".join(map(str, EE)) + " " + "\n")
 
-file_STAT = open( PATH + "logs/stat_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
+file_STAT = open( "logs/stat_t_%.3f_tp_%.3f_U_%.2f_mu_%.2f.txt" % (t,tp,U,mu),"a")
 file_STAT.write("  ".join(map(str,eng.sweep_stats['E'])) + " " + "\n")
 file_STAT.write("  ".join(map(str,eng.sweep_stats['S'])) + " " + "\n")
 file_STAT.write("  ".join(map(str,eng.sweep_stats['max_trunc_err'])) + " " + "\n")
 file_STAT.write("  ".join(map(str,eng.sweep_stats['norm_err'])) + " " + "\n")
 
-with open( PATH + 'mps/gs_t_%.2f_tp_%.2f_U%.2f_mu%.2f.pkl' % (t,tp,U,mu), 'wb') as f:
+with open( 'mps/gs_t_%.2f_tp_%.2f_U%.2f_mu%.2f.pkl' % (t,tp,U,mu), 'wb') as f:
     pickle.dump(psi, f)
 
 
