@@ -38,7 +38,7 @@ class DIPOLAR_FERMI_HUBBARD(CouplingModel,MPOModel):
         # if bc_MPS == 'finite' and bc == 'periodic':
         #     order = 'folded'
         # else:
-    	order = 'default'
+        order = 'default'
         
         lat = Chain( L=L, site=site, bc=bc, bc_MPS=bc_MPS, order=order )
         CouplingModel.__init__(self, lat)
