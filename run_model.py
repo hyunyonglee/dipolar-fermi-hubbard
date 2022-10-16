@@ -124,7 +124,7 @@ if RM == 'random':
     tdvp_engine.run_two_sites(N_steps=10)
     # psi.canonical_form()     
 
-chi_list = { 8: 16, 12: 32, 16: 64, 20: CHI}
+chi_list = { 0: 16, 5: 32, 10: 64, 15: CHI}
 
 if BC_MPS == 'infinite':
     max_sweep = 500
