@@ -81,7 +81,8 @@ elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8
     
     n = float(IS)
     Ls = round(n*L/2)
-    product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
+    # product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
+    product_state = ['empty'] * (round(L/2)-Ls) + ['up','down'] * Ls + ['empty'] * (round(L/2)-Ls)
     # Ls = round(n*L)
     # product_state = ['full'] * Ls + ['empty'] * (L-Ls)
     
