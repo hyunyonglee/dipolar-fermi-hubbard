@@ -87,7 +87,8 @@ psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
 
 if RM == 'random':
     TEBD_params = {'N_steps': 10, 'trunc_params':{'chi_max': 32}, 'verbose': 0}
-    eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
+    # eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
+    eng = tebd.TEBDEngine(psi, M, TEBD_params)
     eng.run()
     psi.canonical_form() 
 
