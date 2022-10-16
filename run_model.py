@@ -65,6 +65,7 @@ model_params = {
     "QS": QS
 }
 
+
 print("\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 M = model.DIPOLAR_FERMI_HUBBARD(model_params)
 
@@ -87,23 +88,37 @@ psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
 
 
 if RM == 'random':
-    TEBD_params = {'N_steps': 10, 'trunc_params':{'chi_max': 32}, 'verbose': 0}
-    eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
-    eng.run()
-    psi.canonical_form() 
+    # TEBD_params = {'N_steps': 10, 'trunc_params':{'chi_max': 32}, 'verbose': 0}
+    # eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
+    # eng.run()
+    # psi.canonical_form() 
 
+    model_params_tdvp = {
+    "L": L,
+    "t": 0.0,
+    "tp": 0.0,
+    "h": 1.0,
+    "U": 0.0,
+    "mu": mu,
+    "bc_MPS": BC_MPS,
+    "bc": BC,
+    "QN": QN,
+    "QS": QS
+    }
 
-    # tdvp_params = {
-    # 'start_time': 0,
-    # 'dt': 0.1,
-    # 'trunc_params': {
-    # 'chi_max': 32,
-    # 'svd_min': 1.e-10,
-    # 'trunc_cut': None}
-    # }
+    M_tdvp = model.DIPOLAR_FERMI_HUBBARD(model_params_tdvp)
 
-    # tdvp_engine = tdvp.TDVPEngine(psi, M, tdvp_params)
-    # tdvp_engine.run_two_sites(N_steps=10)
+    tdvp_params = {
+    'start_time': 0,
+    'dt': 0.1,
+    'trunc_params': {
+    'chi_max': 32,
+    'svd_min': 1.e-10,
+    'trunc_cut': None}
+    }
+
+    tdvp_engine = tdvp.TDVPEngine(psi, M_tdvp, tdvp_params)
+    tdvp_engine.run_two_sites(N_steps=10)
     # psi.canonical_form()     
 
 chi_list = { 8: 16, 12: 32, 16: 64, 20: CHI}
