@@ -186,29 +186,29 @@ else:
 # measuring exciton condensation
 hus = []
 hds = []
-if BC_MPS == 'finite' and BC == 'periodic':
-    for i in range(0,int(L/2-1)): 
-        I = 2*i
-        hus.append( np.abs( psi.expectation_value_term([('Cdu',I+2),('Cu',I)]) ) )
-    hus.append( np.abs( psi.expectation_value_term([('Cdu',L-1),('Cu',L-2 )]) ) )
-    for i in range(0,int(L/2-1)):
-        I = L-1 - 2*i
-        hus.append( np.abs( psi.expectation_value_term([('Cdu',I-2),('Cu',I)]) ) )
-    hus.append( np.abs( psi.expectation_value_term([('Cdu',0),('Cu',1)]) ) )
+# if BC_MPS == 'finite' and BC == 'periodic':
+#     for i in range(0,int(L/2-1)): 
+#         I = 2*i
+#         hus.append( np.abs( psi.expectation_value_term([('Cdu',I+2),('Cu',I)]) ) )
+#     hus.append( np.abs( psi.expectation_value_term([('Cdu',L-1),('Cu',L-2 )]) ) )
+#     for i in range(0,int(L/2-1)):
+#         I = L-1 - 2*i
+#         hus.append( np.abs( psi.expectation_value_term([('Cdu',I-2),('Cu',I)]) ) )
+#     hus.append( np.abs( psi.expectation_value_term([('Cdu',0),('Cu',1)]) ) )
 
-    for i in range(0,int(L/2-1)): 
-        I = 2*i
-        hds.append( np.abs( psi.expectation_value_term([('Cdd',I+2),('Cd',I)]) ) )
-    hds.append( np.abs( psi.expectation_value_term([('Cdd',L-1),('Cd',L-2 )]) ) )
-    for i in range(0,int(L/2-1)):
-        I = L-1 - 2*i
-        hds.append( np.abs( psi.expectation_value_term([('Cdd',I-2),('Cd',I)]) ) )
-    hds.append( np.abs( psi.expectation_value_term([('Cdd',0),('Cd',1)]) ) )
+#     for i in range(0,int(L/2-1)): 
+#         I = 2*i
+#         hds.append( np.abs( psi.expectation_value_term([('Cdd',I+2),('Cd',I)]) ) )
+#     hds.append( np.abs( psi.expectation_value_term([('Cdd',L-1),('Cd',L-2 )]) ) )
+#     for i in range(0,int(L/2-1)):
+#         I = L-1 - 2*i
+#         hds.append( np.abs( psi.expectation_value_term([('Cdd',I-2),('Cd',I)]) ) )
+#     hds.append( np.abs( psi.expectation_value_term([('Cdd',0),('Cd',1)]) ) )
 
-else:
-    for i in range(0,R): 
-        hus.append( np.abs( psi.expectation_value_term([('Cdu',i+1),('Cu',i)]) ) )
-        hds.append( np.abs( psi.expectation_value_term([('Cdd',i+1),('Cd',i)]) ) )
+# else:
+for i in range(0,R): 
+    hus.append( np.abs( psi.expectation_value_term([('Cdu',i+1),('Cu',i)]) ) )
+    hds.append( np.abs( psi.expectation_value_term([('Cdd',i+1),('Cd',i)]) ) )
 
 
 '''
