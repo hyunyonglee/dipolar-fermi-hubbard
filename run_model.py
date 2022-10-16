@@ -80,7 +80,7 @@ elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8
     # Ls = round(n*L/2)
     # product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
     Ls = round(n*L)
-    product_state = ['full'] * Ls + ['empty'] * (L-2*Ls)
+    product_state = ['full'] * Ls + ['empty'] * (L-Ls)
     
 psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
 
