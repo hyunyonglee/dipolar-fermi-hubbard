@@ -77,14 +77,16 @@ elif IS == 'empty-full':
 elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'] ):
     
     n = float(IS)
-    Ls = round(n*L/2)
-    product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
+    # Ls = round(n*L/2)
+    # product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
+    Ls = round(n*L)
+    product_state = ['full'] * Ls + ['empty'] * (L-2*Ls)
     
 psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
 
 
 if RM == 'random':
-    TEBD_params = {'N_steps': 4, 'trunc_params':{'chi_max': 4}, 'verbose': 0}
+    TEBD_params = {'N_steps': 10, 'trunc_params':{'chi_max': 32}, 'verbose': 0}
     eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
     eng.run()
     psi.canonical_form() 
