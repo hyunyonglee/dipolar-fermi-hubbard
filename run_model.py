@@ -96,8 +96,8 @@ if RM == 'random':
 
     model_params_tdvp = {
     "L": L,
-    "t": 1.0,
-    "tp": 1.0,
+    "t": 0.0,
+    "tp": 0.0,
     "h": 1.0,
     "U": 0.0,
     "mu": mu,
