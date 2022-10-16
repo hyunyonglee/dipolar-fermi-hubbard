@@ -102,7 +102,7 @@ if RM == 'random':
     'trunc_cut': None}
     }
 
-    tdvp_engine = tdvp.Engine(psi, M, tdvp_params)
+    tdvp_engine = tdvp.TDVPEngine(psi, M, tdvp_params)
     tdvp_engine.run_two_sites(N_steps=10)
     psi.canonical_form()     
 
