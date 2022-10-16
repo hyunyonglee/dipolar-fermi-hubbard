@@ -34,7 +34,7 @@ class DIPOLAR_FERMI_HUBBARD(CouplingModel,MPOModel):
         site.multiply_operators(['Cdd','Cdu'])
         site.multiply_operators(['Cdu','Cdd'])
         
-        MPS boundary condition
+        # MPS boundary condition
         if bc_MPS == 'finite' and bc == 'periodic':
             order = 'folded'
         else:
