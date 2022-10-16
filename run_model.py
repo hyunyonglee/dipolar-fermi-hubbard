@@ -74,7 +74,11 @@ elif IS == 'up-down':
     product_state = ['up','down'] * int(M.lat.N_sites/2)
 elif IS == 'empty-full':
     product_state = ['empty','full'] * int(M.lat.N_sites/2)
-
+elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'] ):
+    
+    n = float(IS)
+    Ls = round(n*L/2)
+    product_state = ['up','down'] * Ls + ['empty'] * (L-2*Ls)
     
 psi = MPS.from_product_state(M.lat.mps_sites(), product_state, bc=M.lat.bc_MPS)
 
