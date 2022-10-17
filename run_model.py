@@ -107,7 +107,7 @@ chi_list = { 0: 64, 5: 16, 10: 32, 15: 64, 20: CHI}
 
 if BC_MPS == 'infinite':
     max_sweep = 500
-    disable_after = 50
+    disable_after = 30
     S_err = TOL
 else:
     max_sweep = 500
