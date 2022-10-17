@@ -77,6 +77,8 @@ elif IS == 'up-down':
     product_state = ['up','down'] * int(M.lat.N_sites/2)
 elif IS == 'empty-full':
     product_state = ['empty','full'] * int(M.lat.N_sites/2)
+elif IS == '002':
+    product_state = ['empty','empty','full'] * int(M.lat.N_sites/3)
 elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'] ):
     
     n = float(IS)
@@ -94,36 +96,6 @@ if RM == 'random':
     eng = tebd.RandomUnitaryEvolution(psi, TEBD_params)
     eng.run()
     psi.canonical_form() 
-
-    '''
-    model_params_tdvp = {
-    "L": L,
-    "t": 0.0,
-    "tp": 0.0,
-    "h": 1.0,
-    "U": 0.0,
-    "mu": mu,
-    "bc_MPS": 'finite',
-    "bc": 'open',
-    "QN": QN,
-    "QS": QS
-    }
-
-    M_tdvp = model.DIPOLAR_FERMI_HUBBARD(model_params_tdvp)
-
-    tdvp_params = {
-    'start_time': 0,
-    'dt': 0.1,
-    'trunc_params': {
-    'chi_max': 32,
-    'svd_min': 1.e-10,
-    'trunc_cut': None}
-    }
-
-    tdvp_engine = tdvp.TDVPEngine(psi, M_tdvp, tdvp_params)
-    tdvp_engine.run_two_sites(N_steps=10)
-    # psi.canonical_form()     
-    '''
 
 chi_list = { 0: 64, 5: 16, 10: 32, 15: 64, 20: CHI}
 
