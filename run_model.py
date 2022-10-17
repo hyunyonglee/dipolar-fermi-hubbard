@@ -75,7 +75,7 @@ if IS == 'up':
     product_state = ['up'] * M.lat.N_sites
 elif IS == 'up-down':
     product_state = ['up','down'] * int(M.lat.N_sites/2)
-elif IS == 'empty-full':
+elif IS == '02':
     product_state = ['empty','full'] * int(M.lat.N_sites/2)
 elif IS == '002':
     product_state = ['empty','empty','full'] * int(M.lat.N_sites/3)
