@@ -103,8 +103,8 @@ if RM == 'random':
     "h": 1.0,
     "U": 0.0,
     "mu": mu,
-    "bc_MPS": BC_MPS,
-    "bc": BC,
+    "bc_MPS": 'finite',
+    "bc": 'open',
     "QN": QN,
     "QS": QS
     }
@@ -269,6 +269,10 @@ file.close()
 
 file = open( "observables/energy.txt","a")
 file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + repr(E) + " " + repr( np.mean(Nu) ) + " " + repr( np.mean(Nd) ) + " " + repr( np.mean(Cu) ) + " " + repr( np.mean(Cd) ) + " " + repr( np.mean(hus) ) + " " + repr( np.mean(hds) ) + " " + repr(xi) + " " + "\n")
+file.close()
+
+file = open( "observables/N.txt","a")
+file.write(repr(t) + " " + repr(tp) + " " + repr(U) + " " + repr(mu) + " " + "  ".join(map(str, Nu+Nd)) + " " + "\n")
 file.close()
 
 file = open( "observables/Nu.txt","a")
