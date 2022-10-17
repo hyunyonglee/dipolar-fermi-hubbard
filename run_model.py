@@ -82,9 +82,9 @@ elif IS == '002':
 elif IS == '022':
     product_state = ['empty','full','full'] * int(M.lat.N_sites/3)
 elif IS == '0002':
-    product_state = ['empty','empty','empty','full'] * int(M.lat.N_sites/3)
+    product_state = ['empty','empty','empty','full'] * int(M.lat.N_sites/4)
 elif IS == '0222':
-    product_state = ['empty','full','full','full'] * int(M.lat.N_sites/3)
+    product_state = ['empty','full','full','full'] * int(M.lat.N_sites/4)
 elif any( IS == frac for frac in ['0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'] ):
     
     n = float(IS)
